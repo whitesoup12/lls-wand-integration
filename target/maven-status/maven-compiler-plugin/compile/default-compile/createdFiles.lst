@@ -1,7 +1,3 @@
-com\vance\wand\HelloController$1.class
-module-info.class
-com\vance\wand\HelloController.class
-com\vance\wand\Utils.class
-com\vance\wand\HelloApplication.class
-com\vance\wand\Launcher.class
-com\vance\wand\HelloApplication$1.class
+com\vance\Camera.class
+com\vance\Main.class
+com\vance\Camera$1.class

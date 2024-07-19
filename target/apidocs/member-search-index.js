@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"com.vance","c":"Camera","l":"Camera()","u":"%3Cinit%3E()"},{"p":"com.vance","c":"Main","l":"Main()","u":"%3Cinit%3E()"},{"p":"com.vance","c":"Main","l":"main(String[])","u":"main(java.lang.String[])"},{"p":"com.vance","c":"Camera","l":"startCamera()"}];updateSearchResults();

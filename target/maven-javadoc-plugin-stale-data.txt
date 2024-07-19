@@ -1,0 +1,49 @@
+@options
+@packages
+@argfile
+-classpath
+'C:/Users/white/.m2/repository/org/openpnp/opencv/4.9.0-0/opencv-4.9.0-0.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'17'
+-sourcepath
+'D:/Development/wand3/src/main/java;D:/Development/wand3/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2022&#x2013;2024. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'D:/Development/wand3/target/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'wand3 1.0.0 API'
+-use
+-version
+-windowtitle
+'wand3 1.0.0 API'
+com.vance
+'D:/Development/wand3/src/main/java/com/vance/Camera.java'
+'D:/Development/wand3/src/main/java/com/vance/Main.java'
+C:\Users\white\.m2\repository\org\openpnp\opencv\4.9.0-0\opencv-4.9.0-0.jar = 1719865547643
+D:\Development\wand3\src\main\java = 1721423727428
+D:\Development\wand3\target\generated-sources\annotations = 1721425691017
+D:\Development\wand3\target\apidocs\allclasses-index.html = 1721425694484
+D:\Development\wand3\target\apidocs\allpackages-index.html = 1721425694487
+D:\Development\wand3\target\apidocs\element-list = 1721425694445
+D:\Development\wand3\target\apidocs\help-doc.html = 1721425694504
+D:\Development\wand3\target\apidocs\index-all.html = 1721425694498
+D:\Development\wand3\target\apidocs\index.html = 1721425694500
+D:\Development\wand3\target\apidocs\jquery-ui.overrides.css = 1721425694518
+D:\Development\wand3\target\apidocs\member-search-index.js = 1721425694491
+D:\Development\wand3\target\apidocs\module-search-index.js = 1721425694488
+D:\Development\wand3\target\apidocs\overview-tree.html = 1721425694473
+D:\Development\wand3\target\apidocs\package-search-index.js = 1721425694489
+D:\Development\wand3\target\apidocs\script.js = 1721425694507
+D:\Development\wand3\target\apidocs\search.js = 1721425694509
+D:\Development\wand3\target\apidocs\stylesheet.css = 1721425694506
+D:\Development\wand3\target\apidocs\tag-search-index.js = 1721425694491
+D:\Development\wand3\target\apidocs\type-search-index.js = 1721425694489
