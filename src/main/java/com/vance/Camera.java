@@ -58,12 +58,11 @@ public class Camera {
                 new Size(videoCapture.get(Videoio.CAP_PROP_FRAME_WIDTH),
                         videoCapture.get(Videoio.CAP_PROP_FRAME_HEIGHT)));
         try {
-            int frames = 0;
-            while(frames < 150) {
-                Mat frame = grabFrame();
+            int frameNumber = 0;
+            while(frameNumber < 30) {
+                Mat frame = grabFrame(frameNumber);
                 videoWriter.write(frame);
-                //System.out.println("Frame: " + frames);
-                frames++;
+                frameNumber++;
                 Thread.sleep(33);
             }
             System.out.println("Releasing");
@@ -83,7 +82,7 @@ public class Camera {
             @Override
             public void run()
             {
-                Mat frame = grabFrame();
+                Mat frame = grabFrame(0);
             }
         };
 
@@ -91,7 +90,7 @@ public class Camera {
         this.timer.scheduleAtFixedRate(frameGrabber, 0, 33, TimeUnit.MILLISECONDS);
     }
 
-    private Mat grabFrame() {
+    private Mat grabFrame(int frameNumber) {
         Mat frame = new Mat();
         try {
             this.videoCapture.read(frame);
@@ -123,7 +122,11 @@ public class Camera {
                 Imgproc.dilate(morphOutput, morphOutput, dilateElement);
                 Imgproc.dilate(morphOutput, morphOutput, dilateElement);
 
-                return this.findAndDraw(morphOutput, frame);
+                this.saveImage(morphOutput, String.valueOf(frameNumber));
+
+                this.findAndDraw(morphOutput, frame);
+
+                return frame;
             }
         }catch (Exception e) {
             System.err.print("Exception during the image elaboration...");
@@ -161,7 +164,7 @@ public class Camera {
         return frame;
     }
 
-    private BufferedImage processImage(Mat original) {
+    private void saveImage(Mat original, String filename) {
         // init
         BufferedImage image = null;
         int width = original.width(), height = original.height(), channels = original.channels();
@@ -179,6 +182,11 @@ public class Camera {
         final byte[] targetPixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
         System.arraycopy(sourcePixels, 0, targetPixels, 0, sourcePixels.length);
 
-        return image;
+        try {
+            File outputfile = new File("D:/Development/wand3/images/" + filename + ".png");
+            ImageIO.write(image, "png", outputfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
