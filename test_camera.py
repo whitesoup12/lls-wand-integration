@@ -3,7 +3,7 @@ import sys
 import numpy as np
 
 # Set up camera (use CAP_DSHOW for Windows, CAP_V4L2 for Linux)
-cap = cv2.VideoCapture(1, cv2.CAP_DSHOW if 'win' in sys.platform.lower() else cv2.CAP_V4L2)
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW if 'win' in sys.platform.lower() else cv2.CAP_V4L2)
 
 if not cap.isOpened():
     print("Error: Could not open camera.")

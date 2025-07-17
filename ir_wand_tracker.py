@@ -15,7 +15,7 @@ last_detection_time = time.time()  # Track last detection time
 no_detection_threshold = 2.0  # 2 seconds timeout
 
 # Set up camera (use CAP_DSHOW for Windows, CAP_V4L2 for Linux)
-cap = cv2.VideoCapture(1, cv2.CAP_DSHOW if 'win' in sys.platform.lower() else cv2.CAP_V4L2)
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW if 'win' in sys.platform.lower() else cv2.CAP_V4L2)
 if not cap.isOpened():
     print("Error: Could not open IR camera.")
     exit()
@@ -23,7 +23,7 @@ if not cap.isOpened():
 # Try to set camera properties
 try:
     cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, 0.0)  # Disable auto-exposure
-    cap.set(cv2.CAP_PROP_EXPOSURE, -60)       # Low exposure to prioritize IR
+    cap.set(cv2.CAP_PROP_EXPOSURE, -100)       # Low exposure to prioritize IR
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)    # Set resolution for better focus
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)   # Adjust as needed
 except:
@@ -79,13 +79,11 @@ while True:
                 points.appendleft((x, y))
                 last_detection_time = current_time  # Update last detection time
                 cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
-                print(f"Detected blob: x={x}, y={y}, size={size:.2f}, response={keypoint.response:.2f}")
-        else:
-            print("No valid keypoints found within area range.")
+                # print(f"Detected blob: x={x}, y={y}, size={size:.2f}, response={keypoint.response:.2f}")
     else:
-        print("No keypoints detected in this frame.")
+        # print("No keypoints detected in this frame.")
         if current_time - last_detection_time >= no_detection_threshold:
-            print("No detection for 2 seconds, refreshing...")
+            # print("No detection for 2 seconds, refreshing...")
             points.clear()  # Reset trail
             threshold_value = max(200, threshold_value - 10)  # Lower threshold to re-detect
             params.minArea = max(1, min_blob_area - 1)  # Relax min area
@@ -105,13 +103,13 @@ while True:
             if all(d > min_distance for d in [d1_15, d15_30, d30_1]):
                 # Check if side lengths are roughly similar (forgiving ratio)
                 sides = [d1_15, d15_30, d30_1]
-                if 0.2 < min(sides) / max(sides) < 2.0:
+                if 0.5 < min(sides) / max(sides) < 1.5:
                     # Check closure (distance from p30 back to p1 relative to max side)
                     max_side = max(sides)
                     if d30_1 < max_side * 1.5:  # Allow some deviation for closure
                         print("Incendio!")
                         # Call the endpoint
-                        endpoint = "http://octoplus.local/api/command/Insert Playlist Immediate/Remote Falcon/1/1"
+                        endpoint = "http://octoplus.local/api/command/Insert Playlist Immediate/Incendio/1/1"
                         try:
                             response = requests.get(endpoint)
                             if response.status_code == 200:
