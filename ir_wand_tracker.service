@@ -1,0 +1,15 @@
+[Unit]
+Description=IR Wand Tracker Service
+After=network.target
+
+[Service]
+ExecStart=/home/harry/.virtualenvs/wand_project/bin/python3 /home/harry/ir_wand_tracker/ir_wand_tracker.py
+WorkingDirectory=/home/harry/ir_wand_tracker
+Restart=always
+User=harry
+Environment=DISPLAY=:0  # For GUI (if using X server)
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
